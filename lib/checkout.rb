@@ -1,4 +1,6 @@
 class Checkout
+  CURRENCY_UNIT = '£'
+
   attr_reader :promotional_rules, :products
 
   def initialize(promotional_rules)
@@ -13,6 +15,16 @@ class Checkout
   end
 
   def total
-    '£66.78'
+    formatted_total
+  end
+
+  private
+
+  def formatted_total
+    sprintf("#{CURRENCY_UNIT}%.2f", calculated_total)
+  end
+
+  def calculated_total
+    products.sum(&:price)
   end
 end

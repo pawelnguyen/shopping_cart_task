@@ -1,4 +1,5 @@
 require 'checkout'
+require 'product'
 
 describe 'Checkout integration test' do
   let(:checkout) { Checkout.new(promotional_rules) }
