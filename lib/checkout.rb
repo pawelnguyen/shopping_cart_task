@@ -1,10 +1,10 @@
 class Checkout
   CURRENCY_UNIT = '£'
 
-  attr_reader :promotional_rules, :products
+  attr_reader :promotions, :products
 
-  def initialize(promotional_rules)
-    @promotional_rules = promotional_rules
+  def initialize(promotions)
+    @promotions = promotions
     @products = []
   end
 
@@ -18,6 +18,10 @@ class Checkout
     formatted_total
   end
 
+  def subtotal
+    products.sum(&:price)
+  end
+
   private
 
   def formatted_total
@@ -25,6 +29,12 @@ class Checkout
   end
 
   def calculated_total
-    products.sum(&:price)
+    subtotal - promotion_discounts
+  end
+
+  def promotion_discounts
+    promotions.sum do |promotion|
+      promotion.calculate_discount(self)
+    end
   end
 end

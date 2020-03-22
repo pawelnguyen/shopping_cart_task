@@ -2,7 +2,7 @@ require 'checkout'
 
 describe Checkout do
   let(:checkout) { described_class.new(promotional_rules) }
-  let(:promotional_rules) { double }
+  let(:promotional_rules) { [] }
 
   describe '#scan' do
     subject { checkout.scan(product); checkout }
