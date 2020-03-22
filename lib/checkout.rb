@@ -25,6 +25,7 @@ class Checkout
   private
 
   def formatted_total
+    # Could use money gem instead, but feels like an overkill so far
     sprintf("#{CURRENCY_UNIT}%.2f", calculated_total)
   end
 

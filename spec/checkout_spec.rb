@@ -1,8 +1,8 @@
 require 'checkout'
 
 describe Checkout do
-  let(:checkout) { described_class.new(promotional_rules) }
-  let(:promotional_rules) { [] }
+  let(:checkout) { described_class.new(promotions) }
+  let(:promotions) { [] }
 
   describe '#scan' do
     subject { checkout.scan(product); checkout }
@@ -22,5 +22,11 @@ describe Checkout do
     end
 
     it { expect(checkout.total).to eq '£5.00' }
+
+    context 'with promotions' do
+      let(:promotions) { [double(calculate_discount: 1), double(calculate_discount: 2)] }
+
+      it { expect(checkout.total).to eq '£2.00' }
+    end
   end
 end
