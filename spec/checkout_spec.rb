@@ -12,7 +12,6 @@ describe Checkout do
   end
 
   describe '#total' do
-    subject { checkout.total }
     let(:product_1) { double(price: 2) }
     let(:product_2) { double(price: 3) }
 
@@ -20,6 +19,8 @@ describe Checkout do
       checkout.scan(product_1)
       checkout.scan(product_2)
     end
+
+    subject { checkout.total }
 
     it { expect(checkout.total).to eq '£5.00' }
 

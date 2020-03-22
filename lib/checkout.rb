@@ -18,10 +18,6 @@ class Checkout
     formatted_total
   end
 
-  def subtotal
-    products.sum(&:price)
-  end
-
   private
 
   def formatted_total
@@ -38,5 +34,9 @@ class Checkout
     end
 
     running_subtotal
+  end
+
+  def subtotal
+    products.sum(&:price)
   end
 end
