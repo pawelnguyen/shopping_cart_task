@@ -3,7 +3,7 @@ require 'product'
 
 describe MultipleProductPromotion do
   describe '#calculate_discount' do
-    subject { described_class.new.calculate_discount(checkout) }
+    subject { described_class.new.calculate_discount(checkout, double) }
     let(:checkout) { double(products: products) }
 
     context 'products for which promotion applies' do

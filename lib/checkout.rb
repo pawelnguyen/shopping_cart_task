@@ -30,12 +30,13 @@ class Checkout
   end
 
   def calculated_total
-    subtotal - promotion_discounts
-  end
+    running_subtotal = subtotal
 
-  def promotion_discounts
-    promotions.sum do |promotion|
-      promotion.calculate_discount(self)
+    promotions.each do |promotion|
+      discount = promotion.calculate_discount(self, running_subtotal)
+      running_subtotal -= discount
     end
+
+    running_subtotal
   end
 end

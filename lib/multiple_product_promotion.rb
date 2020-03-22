@@ -7,7 +7,7 @@ class MultipleProductPromotion
     @discount = discount
   end
 
-  def calculate_discount(checkout)
+  def calculate_discount(checkout, _subtotal)
     amount = discounted_products_amount(checkout.products)
     return 0 if amount < min_amount
     amount * discount

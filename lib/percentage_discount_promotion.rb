@@ -8,9 +8,8 @@ class PercentageDiscountPromotion
     @percentage = percentage
   end
 
-  def calculate_discount(checkout)
-    subtotal = checkout.subtotal
+  def calculate_discount(_checkout, subtotal)
     return 0 if subtotal <= threshold
-    subtotal * (BigDecimal.new(percentage) / BigDecimal.new(100))
+    (subtotal * (BigDecimal.new(percentage) / BigDecimal.new(100))).floor(2)
   end
 end
